@@ -1,0 +1,26 @@
+{
+  "name": "right-track-agency-abstract",
+  "version": "0.0.1",
+  "description": "Right Track Agency (Abstract)",
+  "author": "David Waring <dev@davidwaring.net> (https://davidwaring.net)",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.json --readme README.md --template $NODE_PATH/docdash"
+  },
+  "dependencies": {
+    "deepmerge": "^2.0.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  },
+  "homepage": "https://righttrack.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/right-track/right-track-agency-abstract.git"
+  },
+  "bugs": {
+    "url": "https://github.com/right-track/right-track-agency-abstract/issues",
+    "email": "dev@davidwaring.net"
+  }
+}
