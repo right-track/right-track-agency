@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>index.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,35 +27,36 @@
 
 <div id="main">
     
+    <h1 class="page-title">index.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 
+/**
+ * ### Right Track Agency (Abstract)
+ * This module contains classes and functions that are shared across
+ * all implementations of a Right Track Agency
+ * @module /
+ */
 
+module.exports = {
 
+  /**
+   * Shared agency configuration functions
+   * @see module:config
+   */
+  config: require('./config.js')
 
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Right Track Agency (Abstract)</h1><h4>node module: <a href="https://www.npmjs.com/package/right-track-agency-abstract">right-track-agency-abstract</a></h4><hr>
-<p>This is an abstract <strong>Right Track Agency</strong>.  This module provides the 
-shared functionality between all of the Right Track Agencies.</p>
-<p>Currently, it provides the ability to read and load the agency configuration 
-properties.</p>
-<h3>Documentation</h3><p>Documentation can be found in the <strong>/doc/</strong> directory of this repository 
-or online at <a href="https://docs.righttrack.io/right-track-agency-abstract">https://docs.righttrack.io/right-track-agency-abstract</a>.</p></article>
+};</code></pre>
+        </article>
     </section>
-
-
 
 
 
