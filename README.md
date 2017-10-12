@@ -1,7 +1,7 @@
 Right Track Agency (Abstract)
 =============================
 
-#### node module: [right-track-agency-abstract](https://www.npmjs.com/package/right-track-agency-abstract)
+#### node module: [right-track-agency](https://www.npmjs.com/package/right-track-agency)
 
 ---
 
@@ -14,4 +14,4 @@ properties.
 ### Documentation
 
 Documentation can be found in the **/doc/** directory of this repository 
-or online at [https://docs.righttrack.io/right-track-agency-abstract](https://docs.righttrack.io/right-track-agency-abstract).
+or online at [https://docs.righttrack.io/right-track-agency](https://docs.righttrack.io/right-track-agency).

@@ -1,5 +1,5 @@
 {
-  "name": "right-track-agency-abstract",
+  "name": "right-track-agency",
   "version": "1.0.1",
   "description": "Right Track Agency (Abstract)",
   "author": "David Waring <dev@davidwaring.net> (https://davidwaring.net)",
@@ -17,10 +17,10 @@
   "homepage": "https://righttrack.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/right-track/right-track-agency-abstract.git"
+    "url": "https://github.com/right-track/right-track-agency.git"
   },
   "bugs": {
-    "url": "https://github.com/right-track/right-track-agency-abstract/issues",
+    "url": "https://github.com/right-track/right-track-agency/issues",
     "email": "dev@davidwaring.net"
   }
 }
