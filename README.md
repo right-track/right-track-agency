@@ -112,13 +112,9 @@ The following example uses the [right-track-agency-mnr](https://github.com/right
 module, which is the Metro North Railroad implementation of a `RightTrackAgency`.
 
 ```javascript
-const MNR = require('right-track-agency-mnr');
+const mnr = require('right-track-agency-mnr');
 const RightTrackDB = require('right-track-db-sqlite3');
 const core = require('right-track-core');
-
-// Create a new instance of the Right Track Agency
-// The default configuration file is loaded
-let mnr = new MNR();
 
 // Load an additional configuration file
 // This path is relative to the agency's module directory
