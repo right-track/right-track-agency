@@ -1,39 +1,26 @@
 'use strict';
 
-/**
- * ### Agency Configuration
- * This module will read agency configuration files and provide the
- * configuration properties.
- * @module config
- */
-
 
 const fs = require('fs');
 const path = require('path');
 const merge = require('deepmerge');
 
 
-// DEFAULT CONFIGURATION FILE
-const defaultLocation = './agency.json';
-
-
-// AGENCY CONFIGURATION VARIABLES
-let CONFIG = {};
-
-
-
 /**
  * Read the configuration file from the specified path and merge its properties
  * with the default configuration file.
  * @param {string} modDir Path to the implementing agency's module directory
- * @param {string} location Path to agency config file (relative paths are relative to module root)
+ * @param {string} [location=./agency.json] Path to agency config file (relative paths are relative to module root)
+ * @param {object} [config={}] Existing configuration to merge with newly read configuration
+ * @returns {object} Agency configuration
+ * @private
  */
-function read(modDir, location) {
+function read(modDir, location='./agency.json', config={}) {
   if ( modDir !== undefined && location !== undefined ) {
 
     // Relative paths are relative to the module's root directory
     if ( _isRelativePath(location) ) {
-      location = _makeAbsolutePath(modDir, "/../" + location);
+      location = _makeAbsolutePath(modDir, "/" + location);
     }
     console.log('--> Reading Agency Config File: ' + location);
 
@@ -44,33 +31,15 @@ function read(modDir, location) {
     add = _parseConfig(add, path.dirname(location));
 
     // Merge configs
-    CONFIG = merge(CONFIG, add, {
+    config = merge(config, add, {
       arrayMerge: function (d, s) {
         return d.concat(s);
       }
     });
 
+    return config;
+
   }
-}
-
-
-/**
- * Get the agency configuration variables
- * @returns {object} Agency config variables
- */
-function get() {
-  return CONFIG;
-}
-
-
-/**
- * Clear any saved config information and reload the default configuration.  Any
- * previously added config files will have to be read again.
- * @param {string} modDir Path to the implementing agency's module directory
- */
-function reset(modDir) {
-  CONFIG = {};
-  read(modDir, defaultLocation);
 }
 
 
@@ -160,8 +129,4 @@ function _parseConfigValue(value, directory) {
 
 
 // Export Functions
-module.exports = {
-  read: read,
-  get: get,
-  reset: reset
-};
+module.exports = read;
