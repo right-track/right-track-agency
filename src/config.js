@@ -47,23 +47,28 @@ function read(modDir, location='./agency.json', config={}) {
 
 
 /**
- * Check if the directory is a relative path
+ * Check if the directory is a relative path (begins with './' or '../')
  * @param {string} directory Path to directory
  * @return {boolean} True if the directory is a relative path
  * @private
  */
 function _isRelativePath(directory) {
-  if ( directory.charAt(0) === '.' ) {
-    if ( directory.charAt(1) === '/' ) {
-      return true;
-    }
-    if ( directory.charAt(1) === '.' ) {
-      if ( directory.charAt(2) === '/' ) {
+  if ( typeof directory === 'string' ) {
+    if ( directory.charAt(0) === '.' ) {
+      if ( directory.charAt(1) === '/' ) {
         return true;
       }
+      if ( directory.charAt(1) === '.' ) {
+        if ( directory.charAt(2) === '/' ) {
+          return true;
+        }
+      }
     }
+    return false;
   }
-  return false;
+  else {
+    return false;
+  }
 }
 
 /**
@@ -95,8 +100,17 @@ function _parseConfig(object, directory) {
     if (object.hasOwnProperty(property)) {
       let value = object[property];
 
+      // If the property's value is an array, parse each child
+      if ( Array.isArray(value) ) {
+        let parsed = [];
+        for ( let i = 0; i < value.length; i++ ) {
+          parsed.push(_parseConfig(value[i], directory));
+        }
+        rtn[property] = parsed;
+      }
+
       // If the property's value is an object, recurse another level
-      if ( typeof value === 'object' ) {
+      else if ( typeof value === 'object' ) {
         rtn[property] = _parseConfig(value, directory);
       }
 
