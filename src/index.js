@@ -26,10 +26,12 @@ class RightTrackAgency {
    *
    * This will set the following properties, which are accessible from the
    * implementing agency's Class:
-   * - `this.moduleDirectory` = the root of the agency's module directory
-   * - `this.config` = the agency's configuration (the default configuration
+   * - `moduleDirectory` = the root of the agency's module directory
+   * - `config` = the agency's configuration (the default configuration
    * or the default merged with an additional configuration if `readConfig`
    * is used).
+   * - `id` = the agency id code
+   * - `name` = the agency's full name
    * @param {string} moduleDirectory The full path to the root of the agency's
    * module directory.  This is where relative paths to configuration files
    * will be relative to.
@@ -45,12 +47,42 @@ class RightTrackAgency {
     this.moduleDirectory = moduleDirectory;
 
     // Read default config
-    this.config = readConfig(this.moduleDirectory);
+    this.resetConfig();
 
   }
 
 
+  /**
+   * Get the agency id code
+   * @returns {string|undefined} agency id code
+   */
+  get id() {
+    if ( this.config !== undefined ) {
+      return this.config.id;
+    }
+    return undefined;
+  }
+
+  /**
+   * Get the agency name
+   * @returns {string|undefined} agency name
+   */
+  get name() {
+    if ( this.config !== undefined ) {
+      return this.config.name;
+    }
+    return undefined;
+  }
+
+
   // ==== CONFIGURATION ==== //
+
+  /**
+   * Reset the agency configuration to the default values
+   */
+  resetConfig() {
+    this.config = readConfig(this.moduleDirectory);
+  }
 
   /**
    * Read an additional agency configuration file
