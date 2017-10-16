@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#isFeedSupported">isFeedSupported</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#resetConfig">resetConfig</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -46,14 +46,14 @@ const readConfig = require('./config.js');
 
 
 /**
- * ### Right Track Agency Abstract Class
+ * ### `RightTrackAgency` Abstract Class
  * This abstract class is implemented by various Right Track Agencies which
  * provide the agency-specific configuration information and real-time status
  * information.
  *
  * The abstract class handles the agency configuration properties and the
  * reading of additional agency configuration files.  An implementation
- * of this class should override the `loadFeed()` function to provide
+ * of this class should override the feed-related functions to provide
  * a real-time Station Feed.
  * @class
  * @abstract
@@ -67,10 +67,12 @@ class RightTrackAgency {
    *
    * This will set the following properties, which are accessible from the
    * implementing agency's Class:
-   * - `this.moduleDirectory` = the root of the agency's module directory
-   * - `this.config` = the agency's configuration (the default configuration
+   * - `moduleDirectory` = the root of the agency's module directory
+   * - `config` = the agency's configuration (the default configuration
    * or the default merged with an additional configuration if `readConfig`
    * is used).
+   * - `id` = the agency id code
+   * - `name` = the agency's full name
    * @param {string} moduleDirectory The full path to the root of the agency's
    * module directory.  This is where relative paths to configuration files
    * will be relative to.
@@ -83,15 +85,63 @@ class RightTrackAgency {
     }
 
     // Set Agency Module Directory
-    this.moduleDirectory = moduleDirectory;
+    this._moduleDirectory = moduleDirectory;
 
     // Read default config
-    this.config = readConfig(this.moduleDirectory);
+    this.resetConfig();
 
   }
 
 
+  // ==== CLASS MEMBERS ==== //
+
+  /**
+   * The Agency's id code
+   * @returns {string|undefined}
+   */
+  get id() {
+    if ( this.config !== undefined ) {
+      return this.config.id;
+    }
+    return undefined;
+  }
+
+  /**
+   * The Agency's full name
+   * @returns {string|undefined}
+   */
+  get name() {
+    if ( this.config !== undefined ) {
+      return this.config.name;
+    }
+    return undefined;
+  }
+
+  /**
+   * The Agency's module directory
+   * @returns {string}
+   */
+  get moduleDirectory() {
+    return this._moduleDirectory;
+  }
+
+  /**
+   * The Agency's configuration properties
+   * @returns {object}
+   */
+  get config() {
+    return this._config;
+  }
+
+
   // ==== CONFIGURATION ==== //
+
+  /**
+   * Reset the agency configuration to the default values
+   */
+  resetConfig() {
+    this._config = readConfig(this.moduleDirectory);
+  }
 
   /**
    * Read an additional agency configuration file
@@ -99,7 +149,7 @@ class RightTrackAgency {
    * paths will be relative to the root of the agency's module directory.
    */
   readConfig(configFile) {
-    this.config = readConfig(this.moduleDirectory, configFile, this.config);
+    this._config = readConfig(this.moduleDirectory, configFile, this.config);
   }
 
   /**
@@ -114,9 +164,21 @@ class RightTrackAgency {
   // ==== STATION FEED ==== //
 
   /**
+   * Check if the Agency supports real-time Station Feeds.
+   *
+   * This will return false by default unless the implementing agency overrides
+   * the function to indicate support for Station Feeds.
+   * @returns {boolean} false
+   * @abstract
+   */
+  isFeedSupported() {
+    return false;
+  }
+
+  /**
    * Load the Agency's Station Feed for the specified Origin Stop.
    *
-   * This function will need to be implemented by the implementing agency.
+   * This function will need to be overridden by the implementing agency.
    * @param {RightTrackDB} db The Right Track DB to query
    * @param {Stop} origin The origin Stop
    * @param {function} callback {@link RightTrackAgency~feedCallback|feedCallback} callback function
@@ -164,7 +226,7 @@ module.exports = RightTrackAgency;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Oct 15 2017 18:52:06 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Oct 16 2017 17:15:27 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
