@@ -2,7 +2,7 @@
 
 
 const readConfig = require('./config.js');
-
+const path = require('path');
 
 /**
  * ### `RightTrackAgency` Abstract Class
@@ -81,7 +81,7 @@ class RightTrackAgency {
    * @returns {string}
    */
   get moduleDirectory() {
-    return this._moduleDirectory;
+    return path.normalize(this._moduleDirectory);
   }
 
   /**
