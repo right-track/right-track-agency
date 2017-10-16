@@ -127,7 +127,7 @@ class RightTrackAgency {
    *
    * This will return false by default unless the implementing agency overrides
    * the function to indicate support for Station Feeds.
-   * @returns {boolean} false
+   * @returns {boolean} true if the agency has implemented Station Feeds
    * @abstract
    */
   isFeedSupported() {
