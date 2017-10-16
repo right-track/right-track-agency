@@ -112,25 +112,22 @@ The following example uses the [right-track-agency-mnr](https://github.com/right
 module, which is the Metro North Railroad implementation of a `RightTrackAgency`.
 
 ```javascript
-const mnr = require('right-track-agency-mnr');
+const MNR = require('right-track-agency-mnr');
 const RightTrackDB = require('right-track-db-sqlite3');
 const core = require('right-track-core');
 
 // Load an additional configuration file
 // This path is relative to the agency's module directory
-mnr.readConfig('./path/to/config.json');
+MNR.readConfig('./path/to/config.json');
 
-// Get the agency configuration
-let config = mnr.getConfig();
-
-// Create a RightTrackDB with the agency configuration
-let db = new RightTrackDB(config.id, config.db.location);
+// Create a RightTrackDB for this Agency
+let db = new RightTrackDB(MNR);
 
 // Query the Database for Stop with id = '1'
 core.query.stops.getStop(db, '1', function(err, stop) {
   
   // Load the agency's StationFeed for this Stop
-  mnr.loadFeed(db, stop, function(err, feed) {
+  MNR.loadFeed(db, stop, function(err, feed) {
     
     // Do something with the station feed
     console.log(feed);
