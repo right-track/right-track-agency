@@ -1,7 +1,8 @@
 Right Track Agency (Abstract)
 =============================
 
-#### node module: [right-track-agency](https://www.npmjs.com/package/right-track-agency)
+**node module:** [right-track-agency](https://www.npmjs.com/package/right-track-agency)  
+**GitHub repo:** [right-track/right-track-agency](https://github.com/right-track/right-track-agency)
 
 ---
 
