@@ -711,7 +711,7 @@ the function to indicate support for Station Feeds.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line146">line 146</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line151">line 151</a>
     </li></ul></dd>
     
 
@@ -852,7 +852,102 @@ the function to indicate support for Station Feeds.</p>
 
             
 
-            <td class="description last"><p><a href="RightTrackAgency.html#~feedCallback">feedCallback</a> callback function</p></td>
+            <td class="description last"><p>Callback function</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Station Feed Error.  The Error's message will be
+a pipe (<code>|</code>) separated string in the format of: <code>Error Code|Error Type|Error Message</code>
+that will be parsed out by the <strong>Right Track API Server</strong> into a more specific
+error Response.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>feed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">StationFeed</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The built <code>StationFeed</code> for the Stop</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1096,193 +1191,6 @@ paths will be relative to the root of the agency's module directory.</p></td>
     
 
     
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        
-                
-
-    
-
-    <h4 class="name" id="~feedCallback"><span class="type-signature"></span>feedCallback<span class="signature">(error, feed<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line158">line 158</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>This callback is performed after the Station Feed for this agency has been
-built for the requested Stop.</p>
-<p>See the <a href="https://github.com/right-track/right-track-core">right-track-core</a>
-project for additional documentation, specifically the <code>StationFeed</code> class
-(<a href="https://docs.righttrack.io/right-track-core/StationFeed.html">https://docs.righttrack.io/right-track-core/StationFeed.html</a>).</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>error</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Error</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Station Feed Error.  The Error's message will be
-a pipe (<code>|</code>) separated string in the format of: <code>Error Code|Error Type|Error Message</code>
-that will be parsed out by the <strong>Right Track API Server</strong> into a more specific
-error Response.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>feed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">StationFeed</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The built <code>StationFeed</code> for the Stop</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-    
 
     
 </article>
@@ -1297,7 +1205,7 @@ error Response.</p></td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 14:49:55 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 13:38:36 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

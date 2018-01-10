@@ -140,7 +140,12 @@ class RightTrackAgency {
    * This function will need to be overridden by the implementing agency.
    * @param {RightTrackDB} db The Right Track DB to query
    * @param {Stop} origin The origin Stop
-   * @param {function} callback {@link RightTrackAgency~feedCallback|feedCallback} callback function
+   * @param {function} callback Callback function
+   * @param {Error} callback.error Station Feed Error.  The Error's message will be
+   * a pipe (`|`) separated string in the format of: `Error Code|Error Type|Error Message`
+   * that will be parsed out by the **Right Track API Server** into a more specific
+   * error Response.
+   * @param {StationFeed} [callback.feed] The built `StationFeed` for the Stop
    * @abstract
    */
   loadFeed(db, origin, callback) {
@@ -148,28 +153,6 @@ class RightTrackAgency {
   }
 
 }
-
-
-
-
-
-// ===== CALLBACK FUNCTIONS ===== //
-
-/**
- * This callback is performed after the Station Feed for this agency has been
- * built for the requested Stop.
- *
- * See the {@link https://github.com/right-track/right-track-core|right-track-core}
- * project for additional documentation, specifically the `StationFeed` class
- * ({@link https://docs.righttrack.io/right-track-core/StationFeed.html}).
- * @callback RightTrackAgency~feedCallback
- * @param {Error} error Station Feed Error.  The Error's message will be
- * a pipe (`|`) separated string in the format of: `Error Code|Error Type|Error Message`
- * that will be parsed out by the **Right Track API Server** into a more specific
- * error Response.
- * @param {StationFeed} [feed] The built `StationFeed` for the Stop
- */
-
 
 
 
