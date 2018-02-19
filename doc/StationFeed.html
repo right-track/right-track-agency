@@ -1,0 +1,500 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StationFeed - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#isFeedSupported">isFeedSupported</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#resetConfig">resetConfig</a></li></ul></li><li><a href="StationFeed.html">StationFeed</a></li><li><a href="StationFeedDeparture.html">StationFeedDeparture</a><ul class='methods'><li data-type='method'><a href="StationFeedDeparture.html#.sort">sort</a></li></ul></li><li><a href="StationFeedDepartureStatus.html">StationFeedDepartureStatus</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">StationFeed</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        StationFeed
+        </h2>
+        
+            <div class="class-description"><h2>Station Feed</h2><p>A real-time feed of status information of departures
+from a single Stop.</p>
+<p>To access this Class directly:</p>
+<pre class="prettyprint source lang-javascript"><code>const SF = require('right-track-agency/src/StationFeed');
+const StationFeed = SF.StationFeed;</code></pre></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="StationFeed"><span class="type-signature"></span>new StationFeed<span class="signature">(stop, updated, departures)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="StationFeed_StationFeed.js.html">StationFeed/StationFeed.js</a>, <a href="StationFeed_StationFeed.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Station Feed Constructor</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>stop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Stop</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Origin Stop</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>updated</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Last Updated</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>departures</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="StationFeedDeparture.html">StationFeedDeparture</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>List of Departures</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="departures"><span class="type-signature"></span>departures<span class="type-signature"> :Array.&lt;<a href="StationFeedDeparture.html">StationFeedDeparture</a>></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="StationFeed_StationFeed.js.html">StationFeed/StationFeed.js</a>, <a href="StationFeed_StationFeed.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List of Station Feed Departures for this Station Feed</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;<a href="StationFeedDeparture.html">StationFeedDeparture</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="stop"><span class="type-signature"></span>stop<span class="type-signature"> :Stop</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="StationFeed_StationFeed.js.html">StationFeed/StationFeed.js</a>, <a href="StationFeed_StationFeed.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>The Origin Stop of the Station Feed</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Stop</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="updated"><span class="type-signature"></span>updated<span class="type-signature"> :DateTime</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="StationFeed_StationFeed.js.html">StationFeed/StationFeed.js</a>, <a href="StationFeed_StationFeed.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>The Date/Time of when the data was last updated</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">DateTime</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 19 2018 10:13:03 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

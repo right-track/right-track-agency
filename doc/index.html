@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#isFeedSupported">isFeedSupported</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#resetConfig">resetConfig</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#isFeedSupported">isFeedSupported</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#resetConfig">resetConfig</a></li></ul></li><li><a href="StationFeed.html">StationFeed</a></li><li><a href="StationFeedDeparture.html">StationFeedDeparture</a><ul class='methods'><li data-type='method'><a href="StationFeedDeparture.html#.sort">sort</a></li></ul></li><li><a href="StationFeedDepartureStatus.html">StationFeedDepartureStatus</a></li></ul>
 </nav>
 
 <div id="main">
@@ -53,6 +53,9 @@
 <code>RightTrackAgency</code> class which is extended by an implementing Right Track Agency.</p>
 <p>The abstract class provides the functionality for reading agency configuration 
 files and setting the configuration properties.</p>
+<p>This module also includes the <strong>Station Feed</strong> Classes: <code>StationFeed</code>, <code>StationFeedDeparture</code>, and
+<code>StationFeedDepartureStatus</code>, which are all required when an Agency implements the real-time
+Station Feed functionality.</p>
 <h3>Documentation</h3><p>Documentation can be found in the <strong>/doc/</strong> directory of this repository 
 or online at <a href="https://docs.righttrack.io/right-track-agency">https://docs.righttrack.io/right-track-agency</a>.</p>
 <h3>Supported Agencies</h3><p>The following are Right Track Agencies that implement this abstract class:</p>
@@ -65,30 +68,39 @@ configuration file (<code>agency.json</code> located in the root of the agency's
 directory).</p>
 <h4>Get Agency Configuration</h4><p>To get the agency configuration use the <code>getConifg()</code> function.  The configuration 
 will have a structure similar to: </p>
-<pre class="prettyprint source"><code>{ 
-    name: 'Metro North Railroad & SLE',
-    id: 'mnr',
-    maintainer: { 
-        name: 'David Waring',
-        email: 'dev@davidwaring.net',
-        website: 'https://www.davidwaring.net/' 
-    },
-    db: { 
-        location: '/right-track-agency-mnr/static/db/latest/database.db',
-        archiveDir: '/right-track-agency-mnr/static/db/archive/' 
-    },
-    stationFeed: { 
-        stationURL: 'http://as0.mta.info/mnr/mstations/station_status_display.cfm?P_AVIS_ID={{STATUS_ID}}',
-        gtfsrt: { 
-            url: 'http://mnorth.prod.acquia-sites.com/wse/gtfsrtwebapi/v1/gtfsrt/{{GTFS_RT_API_KEY}}/getfeed',
-            apiKey: '' 
-        }
-    },
-    static: { 
-        img: { 
-            icon: '/right-track-agency-mnr/static/img/icon.png' 
-        } 
-    } 
+<pre class="prettyprint source"><code>{
+  &quot;name&quot;: &quot;Long Island Rail Road&quot;,
+  &quot;id&quot;: &quot;lirr&quot;,
+  &quot;maintainer&quot;: {
+    &quot;name&quot;: &quot;David Waring&quot;,
+    &quot;email&quot;: &quot;dev@davidwaring.net&quot;,
+    &quot;website&quot;: &quot;https://www.davidwaring.net/&quot;
+  },
+  &quot;db&quot;: {
+    &quot;location&quot;: &quot;./static/db/latest/database.db&quot;,
+    &quot;archiveDir&quot;: &quot;./static/db/archive/&quot;
+  },
+  &quot;stationFeed&quot;: {
+    &quot;stationURL&quot;: &quot;http://traintime.lirr.org/traintime.php?startsta={{ORIGIN_ID}}&endsta={{DESTINATION_ID}}&quot;,
+    &quot;gtfsrt&quot;: {
+      &quot;url&quot;: &quot;https://mnorth.prod.acquia-sites.com/wse/LIRR/gtfsrt/realtime/{{GTFS_RT_API_KEY}}/json&quot;,
+      &quot;apiKey&quot;: &quot;&quot;
+    }
+  },
+  &quot;static&quot;: {
+    &quot;img&quot;: {
+      &quot;icon&quot;: &quot;./static/img/icon.png&quot;
+    }
+  },
+  &quot;build&quot;: {
+    &quot;updateURL&quot;: &quot;http://web.mta.info/developers/data/lirr/google_transit.zip&quot;
+  },
+  &quot;colors&quot;: {
+    &quot;primary&quot;: &quot;#0f47a1&quot;,
+    &quot;primaryText&quot;: &quot;#dddddd&quot;,
+    &quot;secondary&quot;: &quot;#ffd54f&quot;,
+    &quot;secondaryText&quot;: &quot;#263238&quot;
+  }
 }</code></pre><h4>Additional Configuration</h4><p>To provide additional configuration variables, or to override the default ones, 
 create a new configuration file with the variables to add: </p>
 <pre class="prettyprint source lang-json"><code>{
@@ -106,7 +118,7 @@ merge its properties with those already loaded.</p>
 paths loaded relative to the root of the agency's module directory.</p>
 <p>Any relative paths in the configuration file will be loaded relative to the 
 directory the new configuration file is located in.</p>
-<h3>Station Feed</h3><p>A <code>StationFeed</code> provides a list of scheduled departures from a single Stop 
+<h3>Station Feed</h3><p>A <strong>Station Feed</strong> provides a list of scheduled departures from a single Stop
 combined with agency-specific real-time information, such as departure 
 status and/or track numbers.</p>
 <p>To load an agency-specific <code>StationFeed</code>, use the <code>loadFeed(db, origin, callback)</code> 
@@ -119,9 +131,7 @@ function where:</p>
 </ul>
 </li>
 </ul>
-<p>See additional documentation from the <a href="https://github.com/right-track/right-track-core">right-track-core</a> 
-module for more information on the structure of a <code>StationFeed</code> 
-(<a href="https://docs.righttrack.io/right-track-core/StationFeed.html">https://docs.righttrack.io/right-track-core/StationFeed.html</a>).</p>
+<p>See the Documentation for more information on the structure of a <code>StationFeed</code>.</p>
 <h3>Example</h3><p>The following example uses the <a href="https://github.com/right-track/right-track-agency-mnr">right-track-agency-mnr</a> 
 module, which is the Metro North Railroad implementation of a <code>RightTrackAgency</code>.</p>
 <pre class="prettyprint source lang-javascript"><code>const MNR = require('right-track-agency-mnr');
@@ -159,7 +169,7 @@ core.query.stops.getStop(db, '1', function(err, stop) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 13:38:36 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 19 2018 10:13:03 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
