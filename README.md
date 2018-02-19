@@ -12,6 +12,10 @@ This is an abstract **Right Track Agency**.  This module provides the abstract
 The abstract class provides the functionality for reading agency configuration 
 files and setting the configuration properties.
 
+This module also includes the **Station Feed** Classes: `StationFeed`, `StationFeedDeparture`, and
+`StationFeedDepartureStatus`, which are all required when an Agency implements the real-time
+Station Feed functionality.
+
 ### Documentation
 
 Documentation can be found in the **/doc/** directory of this repository 
@@ -36,30 +40,39 @@ To get the agency configuration use the `getConifg()` function.  The configurati
 will have a structure similar to: 
 
 ```
-{ 
-    name: 'Metro North Railroad & SLE',
-    id: 'mnr',
-    maintainer: { 
-        name: 'David Waring',
-        email: 'dev@davidwaring.net',
-        website: 'https://www.davidwaring.net/' 
-    },
-    db: { 
-        location: '/right-track-agency-mnr/static/db/latest/database.db',
-        archiveDir: '/right-track-agency-mnr/static/db/archive/' 
-    },
-    stationFeed: { 
-        stationURL: 'http://as0.mta.info/mnr/mstations/station_status_display.cfm?P_AVIS_ID={{STATUS_ID}}',
-        gtfsrt: { 
-            url: 'http://mnorth.prod.acquia-sites.com/wse/gtfsrtwebapi/v1/gtfsrt/{{GTFS_RT_API_KEY}}/getfeed',
-            apiKey: '' 
-        }
-    },
-    static: { 
-        img: { 
-            icon: '/right-track-agency-mnr/static/img/icon.png' 
-        } 
-    } 
+{
+  "name": "Long Island Rail Road",
+  "id": "lirr",
+  "maintainer": {
+    "name": "David Waring",
+    "email": "dev@davidwaring.net",
+    "website": "https://www.davidwaring.net/"
+  },
+  "db": {
+    "location": "./static/db/latest/database.db",
+    "archiveDir": "./static/db/archive/"
+  },
+  "stationFeed": {
+    "stationURL": "http://traintime.lirr.org/traintime.php?startsta={{ORIGIN_ID}}&endsta={{DESTINATION_ID}}",
+    "gtfsrt": {
+      "url": "https://mnorth.prod.acquia-sites.com/wse/LIRR/gtfsrt/realtime/{{GTFS_RT_API_KEY}}/json",
+      "apiKey": ""
+    }
+  },
+  "static": {
+    "img": {
+      "icon": "./static/img/icon.png"
+    }
+  },
+  "build": {
+    "updateURL": "http://web.mta.info/developers/data/lirr/google_transit.zip"
+  },
+  "colors": {
+    "primary": "#0f47a1",
+    "primaryText": "#dddddd",
+    "secondary": "#ffd54f",
+    "secondaryText": "#263238"
+  }
 }
 ```
 
@@ -91,7 +104,7 @@ directory the new configuration file is located in.
 
 ### Station Feed
 
-A `StationFeed` provides a list of scheduled departures from a single Stop 
+A **Station Feed** provides a list of scheduled departures from a single Stop
 combined with agency-specific real-time information, such as departure 
 status and/or track numbers.
 
@@ -102,9 +115,7 @@ function where:
 - `callback` is a callback function: `function(err, feed)` 
     - accepting an `Error` and `StationFeed` as arguments.
 
-See additional documentation from the [right-track-core](https://github.com/right-track/right-track-core) 
-module for more information on the structure of a `StationFeed` 
-([https://docs.righttrack.io/right-track-core/StationFeed.html](https://docs.righttrack.io/right-track-core/StationFeed.html)).
+See the Documentation for more information on the structure of a `StationFeed`.
 
 
 ### Example
