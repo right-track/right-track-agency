@@ -6,13 +6,14 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json --readme README.md --template $NODE_PATH/docdash"
+    "docs": "jsdoc -c jsdoc.json --readme README.md --template $NODE_PATH/@dwaring87/docdash"
   },
   "dependencies": {
     "@dwaring87/config": "^1.0.0"
   },
   "devDependencies": {
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.5.5",
+    "@dwaring87/docdash": "^0.4.1"
   },
   "homepage": "https://righttrack.io",
   "repository": {
