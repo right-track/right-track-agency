@@ -1,7 +1,7 @@
 'use strict';
 
 
-const readConfig = require('./config.js');
+const config = require('@dwaring87/config');
 const path = require('path');
 
 /**
@@ -46,8 +46,8 @@ class RightTrackAgency {
     // Set Agency Module Directory
     this._moduleDirectory = moduleDirectory;
 
-    // Read default config
-    this.resetConfig();
+    // Setup Config
+    this._config = new config(path.normalize(this._moduleDirectory + '/agency.json'));
 
   }
 
@@ -89,7 +89,7 @@ class RightTrackAgency {
    * @returns {object}
    */
   get config() {
-    return this._config;
+    return this._config.get();
   }
 
 
@@ -99,7 +99,7 @@ class RightTrackAgency {
    * Reset the agency configuration to the default values
    */
   resetConfig() {
-    this._config = readConfig(this.moduleDirectory);
+    this._config.reset();
   }
 
   /**
@@ -108,7 +108,10 @@ class RightTrackAgency {
    * paths will be relative to the root of the agency's module directory.
    */
   readConfig(configFile) {
-    this._config = readConfig(this.moduleDirectory, configFile, this.config);
+    if ( !path.isAbsolute(configFile) ) {
+      configFile = path.normalize(this.moduleDirectory + '/' + configFile);
+    }
+    this._config.read(configFile);
   }
 
   /**
