@@ -1,8 +1,8 @@
 'use strict';
 
-
 const config = require('@dwaring87/config');
 const path = require('path');
+
 
 /**
  * ### `RightTrackAgency` Abstract Class
@@ -32,22 +32,39 @@ class RightTrackAgency {
    * is used).
    * - `id` = the agency id code
    * - `name` = the agency's full name
-   * @param {string} moduleDirectory The full path to the root of the agency's
+   * @param {string} [moduleDirectory] The full path to the root of the agency's
    * module directory.  This is where relative paths to configuration files
    * will be relative to.
+   * @param {Object} [configuration] The Agency configuration settings
    */
-  constructor(moduleDirectory) {
+  constructor(moduleDirectory, configuration) {
 
-    // Prevent the abstract class from being instantiated
-    if (new.target === RightTrackAgency) {
-      throw new TypeError("Cannot instantiate an abstract RightTrackAgency class.  You must use a specific RightTrackAgency implementation.");
+    // Parse Arguments
+    if ( typeof moduleDirectory === 'object' && moduleDirectory !== null ) {
+      configuration = moduleDirectory;
+      moduleDirectory = undefined;
     }
 
-    // Set Agency Module Directory
-    this._moduleDirectory = moduleDirectory;
+    // Module Directory Set
+    if ( moduleDirectory !== undefined ) {
 
-    // Setup Config
-    this._config = new config(path.normalize(this._moduleDirectory + '/agency.json'));
+      // Set Agency Module Directory
+      this._moduleDirectory = moduleDirectory;
+
+      // Setup Config
+      this._config = new config(path.normalize(this._moduleDirectory + '/agency.json'));
+    }
+
+    // Config provided
+    else if ( config !== undefined ) {
+
+      // Set Agency Module Directory as undefined
+      this._moduleDirectory = undefined;
+
+      // Setup Config
+      this._config = new config(configuration);
+
+    }
 
   }
 
