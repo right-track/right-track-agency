@@ -23,10 +23,26 @@ class StationFeedDepartureStatus {
    * @param {string} status Status label
    * @param {int} delay Delay of departure (minutes)
    * @param {DateTime} estDeparture DateTime of estimated departure
-   * @param {string} track Departure Track
+   * @param {string|Track} track Departure Track (or departure track properties: track, scheduled, changed)
    * @param {string=} [remarks] Additional Remarks
    */
   constructor(status, delay, estDeparture, track, remarks) {
+
+    // Convert track string to track object
+    if ( track && typeof track === 'string' ) {
+      track = {
+        track: track,
+        scheduled: false,
+        changed: false
+      }
+    }
+    else {
+      track = {
+        track: track.track ? track.track : "",
+        scheduled: track.scheduled ? track.scheduled : false,
+        changed: track.changed ? track.changed : false
+      }
+    }
 
     /**
      * The departing Trip's Status
@@ -47,8 +63,8 @@ class StationFeedDepartureStatus {
     this.estDeparture = estDeparture;
 
     /**
-     * The departing Trip's track number
-     * @type {string}
+     * The departing Trip's track properties
+     * @type {Track}
      */
     this.track = track;
 
@@ -61,5 +77,12 @@ class StationFeedDepartureStatus {
   }
 
 }
+
+/**
+ * @typedef {Object} Track Departure track properties
+ * @property {string} track The departure track
+ * @property {boolean} [scheduled] Flag for a scheduled track (not yet decided)
+ * @property {changed} [changed] Flag for a changed track
+ */
 
 module.exports = StationFeedDepartureStatus;
