@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#isFeedSupported">isFeedSupported</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#resetConfig">resetConfig</a></li></ul></li><li><a href="StationFeed.html">StationFeed</a></li><li><a href="StationFeedDeparture.html">StationFeedDeparture</a><ul class='methods'><li data-type='method'><a href="StationFeedDeparture.html#.sort">sort</a></li></ul></li><li><a href="StationFeedDepartureStatus.html">StationFeedDepartureStatus</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RightTrackAgency.html">RightTrackAgency</a><ul class='methods'><li data-type='method'><a href="RightTrackAgency.html#getConfig">getConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#isFeedSupported">isFeedSupported</a></li><li data-type='method'><a href="RightTrackAgency.html#loadFeed">loadFeed</a></li><li data-type='method'><a href="RightTrackAgency.html#readConfig">readConfig</a></li><li data-type='method'><a href="RightTrackAgency.html#resetConfig">resetConfig</a></li></ul></li><li><a href="StationFeed.html">StationFeed</a></li><li><a href="StationFeedDeparture.html">StationFeedDeparture</a><ul class='methods'><li data-type='method'><a href="StationFeedDeparture.html#.sort">sort</a></li></ul></li><li><a href="StationFeedDepartureStatus.html">StationFeedDepartureStatus</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
@@ -47,27 +47,33 @@
 
 
     <section class="readme">
-        <article><h1>Right Track Agency (Abstract)</h1><p><strong>node module:</strong> <a href="https://www.npmjs.com/package/right-track-agency">right-track-agency</a><br><strong>GitHub repo:</strong> <a href="https://github.com/right-track/right-track-agency">right-track/right-track-agency</a></p>
+        <article><h1>Right Track Agency (Abstract)</h1>
+<p><strong>node module:</strong> <a href="https://www.npmjs.com/package/right-track-agency">right-track-agency</a><br>
+<strong>GitHub repo:</strong> <a href="https://github.com/right-track/right-track-agency">right-track/right-track-agency</a></p>
 <hr>
-<p>This is an abstract <strong>Right Track Agency</strong>.  This module provides the abstract 
+<p>This is an abstract <strong>Right Track Agency</strong>.  This module provides the abstract
 <code>RightTrackAgency</code> class which is extended by an implementing Right Track Agency.</p>
-<p>The abstract class provides the functionality for reading agency configuration 
+<p>The abstract class provides the functionality for reading agency configuration
 files and setting the configuration properties.</p>
 <p>This module also includes the <strong>Station Feed</strong> Classes: <code>StationFeed</code>, <code>StationFeedDeparture</code>, and
 <code>StationFeedDepartureStatus</code>, which are all required when an Agency implements the real-time
 Station Feed functionality.</p>
-<h3>Documentation</h3><p>Documentation can be found in the <strong>/doc/</strong> directory of this repository 
+<h3>Documentation</h3>
+<p>Documentation can be found in the <strong>/doc/</strong> directory of this repository
 or online at <a href="https://docs.righttrack.io/right-track-agency">https://docs.righttrack.io/right-track-agency</a>.</p>
-<h3>Supported Agencies</h3><p>The following are Right Track Agencies that implement this abstract class:</p>
+<h3>Supported Agencies</h3>
+<p>The following are Right Track Agencies that implement this abstract class:</p>
 <ul>
 <li><a href="https://github.com/right-track/right-track-agency-mnr">Metro North Railroad &amp; SLE (mnr)</a></li>
 <li><a href="https://github.com/right-track/right-track-agency-lirr">Long Island Rail Road (lirr)</a></li>
 </ul>
-<h3>Configuration</h3><p>When a <code>RightTrackAgency</code> class is instantiated it will read the agency's default 
-configuration file (<code>agency.json</code> located in the root of the agency's module 
+<h3>Configuration</h3>
+<p>When a <code>RightTrackAgency</code> class is instantiated it will read the agency's default
+configuration file (<code>agency.json</code> located in the root of the agency's module
 directory).</p>
-<h4>Get Agency Configuration</h4><p>To get the agency configuration use the <code>getConifg()</code> function.  The configuration 
-will have a structure similar to: </p>
+<h4>Get Agency Configuration</h4>
+<p>To get the agency configuration use the <code>getConifg()</code> function.  The configuration
+will have a structure similar to:</p>
 <pre class="prettyprint source"><code>{
   &quot;name&quot;: &quot;Long Island Rail Road&quot;,
   &quot;id&quot;: &quot;lirr&quot;,
@@ -101,8 +107,11 @@ will have a structure similar to: </p>
     &quot;secondary&quot;: &quot;#ffd54f&quot;,
     &quot;secondaryText&quot;: &quot;#263238&quot;
   }
-}</code></pre><h4>Additional Configuration</h4><p>To provide additional configuration variables, or to override the default ones, 
-create a new configuration file with the variables to add: </p>
+}
+</code></pre>
+<h4>Additional Configuration</h4>
+<p>To provide additional configuration variables, or to override the default ones,
+create a new configuration file with the variables to add:</p>
 <pre class="prettyprint source lang-json"><code>{
     &quot;db&quot;: {
         &quot;location&quot;: &quot;/new/path/to/database.db&quot;
@@ -112,27 +121,32 @@ create a new configuration file with the variables to add: </p>
             &quot;apiKey&quot;: &quot;your-mta-api-key&quot;
         }
     }
-}</code></pre><p>Then, use the <code>readConfig(configFile)</code> to parse the configuration file and 
+}
+</code></pre>
+<p>Then, use the <code>readConfig(configFile)</code> to parse the configuration file and
 merge its properties with those already loaded.</p>
-<p>The <code>configFile</code> path can be an absolute or relative path, with relative 
+<p>The <code>configFile</code> path can be an absolute or relative path, with relative
 paths loaded relative to the root of the agency's module directory.</p>
-<p>Any relative paths in the configuration file will be loaded relative to the 
+<p>Any relative paths in the configuration file will be loaded relative to the
 directory the new configuration file is located in.</p>
-<h3>Station Feed</h3><p>A <strong>Station Feed</strong> provides a list of scheduled departures from a single Stop
-combined with agency-specific real-time information, such as departure 
+<h3>Station Feed</h3>
+<p>A <strong>Station Feed</strong> provides a list of scheduled departures from a single Stop
+combined with agency-specific real-time information, such as departure
 status and/or track numbers.</p>
-<p>To load an agency-specific <code>StationFeed</code>, use the <code>loadFeed(db, origin, callback)</code> 
+<p>To load an agency-specific <code>StationFeed</code>, use the <code>loadFeed(db, origin, callback)</code>
 function where:</p>
 <ul>
 <li><code>db</code> is the agency's RightTrackDB</li>
 <li><code>origin</code> is the origin Stop</li>
-<li><code>callback</code> is a callback function: <code>function(err, feed)</code> <ul>
+<li><code>callback</code> is a callback function: <code>function(err, feed)</code>
+<ul>
 <li>accepting an <code>Error</code> and <code>StationFeed</code> as arguments.</li>
 </ul>
 </li>
 </ul>
 <p>See the Documentation for more information on the structure of a <code>StationFeed</code>.</p>
-<h3>Example</h3><p>The following example uses the <a href="https://github.com/right-track/right-track-agency-mnr">right-track-agency-mnr</a> 
+<h3>Example</h3>
+<p>The following example uses the <a href="https://github.com/right-track/right-track-agency-mnr">right-track-agency-mnr</a>
 module, which is the Metro North Railroad implementation of a <code>RightTrackAgency</code>.</p>
 <pre class="prettyprint source lang-javascript"><code>const MNR = require('right-track-agency-mnr');
 const RightTrackDB = require('right-track-db-sqlite3');
@@ -147,16 +161,17 @@ let db = new RightTrackDB(MNR);
 
 // Query the Database for Stop with id = '1'
 core.query.stops.getStop(db, '1', function(err, stop) {
-
+  
   // Load the agency's StationFeed for this Stop
   MNR.loadFeed(db, stop, function(err, feed) {
-
+    
     // Do something with the station feed
     console.log(feed);
-
+    
   });
-
-});</code></pre></article>
+  
+});
+</code></pre></article>
     </section>
 
 
@@ -169,7 +184,7 @@ core.query.stops.getStop(db, '1', function(err, stop) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 14 2019 19:43:38 GMT-0400 (EDT) using the <a href="https://github.com/dwaring87/docdash">@dwaring87/docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Mon Dec 07 2020 21:01:10 GMT-0500 (Eastern Standard Time) using the <a href="https://github.com/dwaring87/docdash">@dwaring87/docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
